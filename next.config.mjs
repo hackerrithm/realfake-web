@@ -12,7 +12,7 @@ const nextConfig = {
                 hostname: "localhost:8080"
             },
             {
-                hostname: "http://embarrassed-hole-production.up.railway.app"
+                hostname: "https://embarrassed-hole-production.up.railway.app"
             }
         ]
     },
