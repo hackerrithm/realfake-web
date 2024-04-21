@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     env: {
-        API: 'http://embarrassed-hole-production.up.railway.app'
+        API: 'https://embarrassed-hole-production.up.railway.app'
     },
     images: {
         remotePatterns: [
