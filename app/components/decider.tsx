@@ -7,12 +7,13 @@ const Decider = () => {
   const [image, setImage] = useState<string | null>(null);
   const [folderName, setFolderName] = useState(null);
   const [result, setResult] = useState<string | null>(null);
+  const api = process.env.NODE_ENV === "production" ? process.env.API : process.env.DEV_API;
 
   const fetchImage = async () => {
     try {
       setResult(null);
-      console.log("process.env.API: " + process.env.API);
-      const response = await axios.get(`${process.env.API}/image`);
+      console.log("api: " + api);
+      const response = await axios.get(`${api}/image`);
       setImage(`${response.data.img}`);
 
       setFolderName(response.data.answer);
@@ -23,7 +24,7 @@ const Decider = () => {
 
   const compareImage = async (answer: string) => {
     try {
-      const response = await axios.post(`${process.env.API}/compare`, {
+      const response = await axios.post(`${api}/compare`, {
         answer: answer,
         img: image,
       });
