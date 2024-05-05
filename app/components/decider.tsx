@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const Decider = () => {
@@ -46,7 +47,6 @@ const Decider = () => {
       if (resultText.toLocaleLowerCase() === "correct") {
         setCorrectCount(correctCount + 1); // Increment the correct count if the answer is correct
       }
-      // You can handle the result here, e.g., show a tick or cross icon
     } catch (error) {
       console.error("Error comparing image:", error);
     }
@@ -56,7 +56,7 @@ const Decider = () => {
     <div className="">
       <div className="flex justify-center">
         <Image
-          src="/real_fake_dark.png" // Replace with your logo image
+          src="/real_fake_dark.png"
           alt="Logo"
           width={200}
           height={100}
@@ -102,15 +102,23 @@ const Decider = () => {
               disabled={result !== undefined && result !== null}
               className="bg-green-500 text-white px-5 py-2 rounded-none ring-green-500 text-4xl hover:bg-green-600 shadow-md transition duration-300 transform hover:shadow-lg"
             >
-              Real ✔️
+              Real 👻
             </button>
             <button
               onClick={() => compareImage("fake")}
               disabled={result !== undefined && result !== null}
               className="bg-red-500 text-white px-5 py-2 rounded-none ring-red-500 text-4xl hover:bg-red-600 shadow-md transition duration-300 transform hover:shadow-lg"
             >
-              Fake ✖️
+              Fake 🤖
             </button>
+          </div>
+        )}
+        {!image && (
+          <div className="flex justify-center ">
+          <div className="text-5xl font-sans font-bold bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text pb-8">
+            can you tell which is real vs AI?
+          </div>
+          <div className="text-5xl font-sans font-bold">🤔</div>
           </div>
         )}
         {!image && (
@@ -129,10 +137,15 @@ const Decider = () => {
         )}
         <button
           onClick={fetchImage}
-          className="bg-yellow-500 text-black font-mono px-4 py-2 rounded-md mb-4 text-3xl"
+          className="bg-yellow-500 text-black font-mono px-4 py-1 rounded-md mb-4 text-3xl hover:bg-blue-500 hover:text-blue-50"
         >
-          {image ? "Next" : "Start"}
+          {image ? "next" : "start"}
         </button>
+        <div>
+          <Link href={"/about"} className="text-center text-2xl text-white">
+            about
+          </Link>
+        </div>
       </div>
     </div>
   );
